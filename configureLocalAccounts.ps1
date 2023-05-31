@@ -1,0 +1,1 @@
+New-LocalUser -AccountNeverExpires:$true -Password (ConvertTo-SecureString -AsPlainText -Force '<examplePassword>') -PasswordNeverExpires:$false -Name '<exampleUserName>' | Add-LocalGroupMember -Group Administrators
