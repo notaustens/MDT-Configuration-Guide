@@ -235,7 +235,7 @@ The configuration above indicates that MDT should only use drivers from the fold
 6. Within this newly created step, add the UNC path for the script (e.g., `\\<exampleServer>\Resources\Scripts\randomPowerShellScript.ps1`)
 
 ```
-The scripts we are currently using to customize/automate much of the deployment process are located in the `E:\Resources\Scripts` folder and can be executed 
+The scripts we are currently using to customize/automate much of the deployment process are located in the `X:\Resources\Scripts` folder and can be executed 
 ```
 
 ![executePowershellScript](https://github.com/notaustens/MDT-Configuration-Guide/assets/105608906/377016f3-e8dc-442c-a153-e55c8165e61f)
