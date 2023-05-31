@@ -9,22 +9,11 @@ $Loc = Get-Location
     $True | % { $Arguments =  @('-NoProfile','-ExecutionPolicy Bypass','-NoExit','-File',"`"$($MyInvocation.MyCommand.Path)`"","\`"$Loc\`"");
     Start-Process -FilePath PowerShell.exe -Verb RunAs -ArgumentList $Arguments; } }
     
-		#-------------------------------------------------------------------------------------------------#
-		# 	The applications removed by this script can be restored by following the procedure below:     #
-		#													                                              #
-		# 	New-Item C:\Mnt -Type Directory | Out-Null							                          #
-		# 	dism /Mount-Image /ImageFile:D:\sources\install.wim /index:1 /ReadOnly /MountDir:C:\Mnt		  #
-		# 	robocopy /S /SEC /R:0 "C:\Mnt\Program Files\WindowsApps" "C:\Program Files\WindowsApps"		  #
-		# 	dism /Unmount-Image /Discard /MountDir:C:\Mnt							                      #					
-		# 	Remove-Item -Path C:\Mnt -Recurse								                              #
-		#													                                              #
-		#-------------------------------------------------------------------------------------------------#
-
 $tweaks = @(
 
 	"debloatWindows"
 	"removeXBOX"
-    "additionalIngressTasks"
+	"additionalIngressTasks"
 )
 
 Function debloatWindows {
@@ -33,7 +22,7 @@ Function debloatWindows {
 		#Unnecessary Windows 10 AppX Apps
 		"*3DBuilder*"
 		"*AppConnector*"
-        "*BingWeather*"
+       	 	"*BingWeather*"
 		"*BingFinance*"
 		"*BingNews*"
 		"*BingSports*"
@@ -45,15 +34,15 @@ Function debloatWindows {
 		"*MicrosoftSolitaireCollection*"
 		"*MicrosoftPowerBIForWindows*"
 		"*MicrosoftStickyNotes*"
-        "*Microsoft.MicrosoftOfficeHub*" #Get Office
-        "*Microsoft.Office.OneNote*"
-        "*Microsoft.Office.Sway*"
-        "*Microsoft.Windows.Photos*" 
-        "*Microsoft.WindowsCamera*" 
-        "*Microsoft.WindowsCommunicationsApps*" #Microsoft Mail & Calendar Application
-        "*Microsoft.WindowsStore*" 
-        "*Microsoft.ZuneMusic*" #Groove Music
-        "*Microsoft.ZuneVideo*" #Movies & TV
+        	"*Microsoft.MicrosoftOfficeHub*" #Get Office
+       		"*Microsoft.Office.OneNote*"
+       		"*Microsoft.Office.Sway*"
+        	"*Microsoft.Windows.Photos*" 
+        	"*Microsoft.WindowsCamera*" 
+        	"*Microsoft.WindowsCommunicationsApps*" #Microsoft Mail & Calendar Application
+        	"*Microsoft.WindowsStore*" 
+        	"*Microsoft.ZuneMusic*" #Groove Music
+        	"*Microsoft.ZuneVideo*" #Movies & TV
 		"*NetworkSpeedTest*"
 		"*Lens*"
 		"*OneConnect*"
