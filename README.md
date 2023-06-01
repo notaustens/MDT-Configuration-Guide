@@ -1,7 +1,5 @@
 # Step 1: Create the Deployment Share #
 
----
-
 Before we can begin deploying systems, we need to create an MDT deployment share in the Deployment Workbench. This deployment share will function as a repository for operating system images, language packs, applications, device drivers, and other software deployed to the target computers.
 
 **To create a deployment share in the Deployment Workbench**
@@ -25,8 +23,6 @@ The New Deployment Share Wizard finishes, and the new deployment share—MDT Dep
    
 # Step 2: Add Operating System Files to the Deployment Share
 
----
-
 MDT acts as a repository for the operating system files deployed to the reference computer and target computer. Add the operating system in the Operating Systems node in the Deployment Workbench using the Import Operating System Wizard.
 
 1. Click **Start**, and then point to **All Programs**. Point to **Microsoft Deployment Toolkit**, and then click **Deployment Workbench**.
@@ -48,7 +44,6 @@ You can also create custom operating system images (install.wim) via DISM and ad
 ```
 
 # Step 3: Create the Deployment Driver Repository 
----
 
 In order to deploy Windows 10 with MDT successfully, you need drivers for the boot images and for the operating system itself. This section will show you how to add drivers for the boot image and operating system by using a few specific system types as examples.
 
@@ -243,8 +238,6 @@ The scripts we are currently using to customize/automate much of the deployment 
 
 # Step 5: Enable Deployment Process Monitoring
 
----
-
 You should enable deployment monitoring by opening up the Monitoring node in the deployment share. This can be accomplished by selecting the **Monitoring** tab on the deployment share properties sheet, and selecting the dialog box to indicate you would like to monitor deployments.
 
 **To enable monitoring of the deployment process**
@@ -328,11 +321,11 @@ UserPassword=<examplePassword>
 
 SkipBDDWelcome=YES
 ```
+# Step 7: Add Applications to the Deployment Share
 
 
-# Step 7: Update the Deployment Share
 
----
+# Step 8: Update the Deployment Share
 
 After configuring the deployment share, update it. Updating the deployment share updates all the MDT configuration files and generates a customized version of Windows PE. You use the customized version of Windows PE to start the target computer and initiate OTI deployment.
 
@@ -354,7 +347,7 @@ After configuring the deployment share, update it. Updating the deployment share
 The Deployment Workbench starts updating the MDT Deployment Share (`X:\DeploymentShare$`)  and creates the LiteTouchPE_x64.iso and LiteTouchPE_x64.wim files (for 64-bit target computers) or LiteTouchPE_x86.iso and LiteTouchPE_x86.wim files (for 32-bit target computers). These will be located in the `E:\DeploymentShare$\Boot` folder (where *deployment_share* is the network shared folder used as the deployment share).
 
 
-# Step 8: Import the Boot Image into WDS
+# Step 9: Import the Boot Image into WDS
 
 1. Click **Start**, and then point to **All Programs**. Click the **Windows Administrative Tools** folder and select the **Windows Deployment Services** application.
 2. In the Windows Deployment Server console tree, expand the Servers/exampleServer node
@@ -363,9 +356,7 @@ The Deployment Workbench starts updating the MDT Deployment Share (`X:\Deploymen
 5. Click **Next**
 7. Click **Next** one more time and then click **Finish** once the image has been successfully uploaded.
 
-# Step 9: Deploy Windows 10 to the Target Computer
-
----
+# Step 10: Deploy Windows 10 to the Target Computer
 
 After creating the task sequence, initiate the operating system deployment process by starting the target computer and selecting Network PXE boot (IPv4) in the BIOS.
 
