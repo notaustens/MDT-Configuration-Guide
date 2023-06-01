@@ -2,7 +2,7 @@
 
 ---
 
-Before deployment can begin, create an MDT deployment share in the Deployment Workbench. This deployment share is the repository for the operating system images, language packs, applications, device drivers, and other software deployed to the target computers.
+Before we can begin deploying systems, we need to create an MDT deployment share in the Deployment Workbench. This deployment share will function as a repository for operating system images, language packs, applications, device drivers, and other software deployed to the target computers.
 
 **To create a deployment share in the Deployment Workbench**
 
