@@ -175,7 +175,9 @@ In these steps, we assume you've downloaded and extracted the drivers for the HP
    
  `D:\Drivers\Windows 10 x64\Hewlett-Packard\HP EliteBook 8560w`
    
-# Step 4: Create the Deployment Task Sequence #
+# Step 4: Add Applications to the Deployment Share
+
+# Step 5: Create the Deployment Task Sequence #
 
 This section will show you how to create the task sequence used to deploy your production Windows 10  image. 
 
@@ -236,7 +238,7 @@ The scripts we are currently using to customize/automate much of the deployment 
 ![executePowershellScript](https://github.com/notaustens/MDT-Configuration-Guide/assets/105608906/377016f3-e8dc-442c-a153-e55c8165e61f)
 
 
-# Step 5: Enable Deployment Process Monitoring
+# Step 6: Enable Deployment Process Monitoring
 
 You should enable deployment monitoring by opening up the Monitoring node in the deployment share. This can be accomplished by selecting the **Monitoring** tab on the deployment share properties sheet, and selecting the dialog box to indicate you would like to monitor deployments.
 
@@ -250,7 +252,7 @@ You should enable deployment monitoring by opening up the Monitoring node in the
 6. In the **MDT Deployment Share** (`X:\DeploymentShare$`) **Properties** dialog box, on the **Rules** tab, notice that the **EventService** property has been added to the CustomSettings.ini file, and then click **OK**.
 7. Close all open windows and dialog boxes.
 
-# Step 6: Add Rules to Deployment Share
+# Step 7: Add Rules to Deployment Share
 
 1. Click **Start**, and then point to **All Programs**. Point to **Microsoft Deployment Toolkit**, and then click **Deployment Workbench**.
 2. In the Deployment Workbench console tree, go to Deployment Workbench/Deployment Shares.
@@ -321,10 +323,6 @@ UserPassword=<examplePassword>
 
 SkipBDDWelcome=YES
 ```
-# Step 7: Add Applications to the Deployment Share
-
-
-
 # Step 8: Update the Deployment Share
 
 After configuring the deployment share, update it. Updating the deployment share updates all the MDT configuration files and generates a customized version of Windows PE. You use the customized version of Windows PE to start the target computer and initiate OTI deployment.
