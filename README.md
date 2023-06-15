@@ -180,6 +180,10 @@ In these steps, we assume you've downloaded and extracted the drivers for the HP
    
 # Step 4: Add Applications to the Deployment Share
 
+```
+Under construction...
+```
+
 # Step 5: Create the Deployment Task Sequence #
 
 This section will show you how to create the task sequence used to deploy your production Windows 10  image. 
@@ -225,14 +229,24 @@ The configuration above indicates that MDT should only use drivers from the fold
 ```
 
    ![drivergroup.](https://learn.microsoft.com/en-us/windows/deployment/images/fig6-taskseq.png) 
+   
+### Add the Included Scripts to the Task Sequence
 
-### Add Custom Tasks to the Windows 10 task sequence
+```
+Under construction...
+```
+
+### Add Additional Custom Tasks to the Task Sequence
 
 1. Continuing from the previous procedure, right-click the **Windows 10 Enterprise x64**  task sequence, and select **Properties**.
 2. Select the **Task Sequence** tab and expand the **State Restore** section.
 4. Within this step of the task sequence you can add a wide variety of custom tasks to your task sequence (e.g., custom scripts, application installs, etc.)
 5. For example, if you wanted to add a custom script to the task sequence, you would simply select the **Custom Tasks** folder in the task sequence and then navigate to the  top of the window and click  **Add** > **General** > **Run PowerShell Script**
 6. Within this newly created step, add the UNC path for the script (e.g., `\\<exampleServer>\Resources\Scripts\randomPowerShellScript.ps1`)
+
+```
+Example image to be added....
+```
 
 # Step 6: Enable Deployment Process Monitoring
 
