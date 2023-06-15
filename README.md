@@ -1,4 +1,4 @@
-The following guide, and included scripts, can be to used to create a standalone deployment server that can automatically deploy and harden Windows systems (either clients, or other servers).
+The following guide, and included scripts, can be to used to develop a standalone deployment server that will automatically deploy, and harden, a Windows system (either a client, or another server).
 ```
 Note: This is very much still a WIP. That said, it is essentially a conglomeration of my own personal documentation, various blogs/tutorials, and exisitng Microsoft documentation.
 ```
