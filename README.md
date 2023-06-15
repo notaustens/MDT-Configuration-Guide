@@ -1,3 +1,5 @@
+The following steps, and included scripts, can be implemented to develop a "standalone" deployment server (e.g., a server, not joined to an Active Directory environment, that can be used to deploy systems).
+
 # Step 1: Create the Deployment Share #
 
 Before we can begin deploying systems, we need to create an MDT deployment share in the Deployment Workbench. This deployment share will function as a repository for operating system images, language packs, applications, device drivers, and other software deployed to the target computers.
@@ -229,13 +231,6 @@ The configuration above indicates that MDT should only use drivers from the fold
 5. For example, if you wanted to add a custom script to the task sequence, you would simply select the **Custom Tasks** folder in the task sequence and then navigate to the  top of the window and click  **Add** > **General** > **Run PowerShell Script**
 6. Within this newly created step, add the UNC path for the script (e.g., `\\<exampleServer>\Resources\Scripts\randomPowerShellScript.ps1`)
 
-```
-You can create your own scripts to further customize/automate much of the deployment process!
-```
-
-![executePowershellScript]("E:\Media\Pictures\Personal\Memories\mdtGuidePhoto1.png")
-
-
 # Step 6: Enable Deployment Process Monitoring
 
 You should enable deployment monitoring by opening up the Monitoring node in the deployment share. This can be accomplished by selecting the **Monitoring** tab on the deployment share properties sheet, and selecting the dialog box to indicate you would like to monitor deployments.
@@ -256,7 +251,7 @@ You should enable deployment monitoring by opening up the Monitoring node in the
 2. In the Deployment Workbench console tree, go to Deployment Workbench/Deployment Shares.
 3. In the details pane, click **MDT Deployment Share (**`X:\DeploymentShare$`**)**.
 4. In the Actions pane, click **Properties** and select the **Rules** tab
-5. The following code block is what we are currently using to guide the deployment process
+5. The following code block is what I am currently using to guide the deployment process
 
 ```
 [Settings]
