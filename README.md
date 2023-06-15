@@ -25,7 +25,11 @@ Before we can begin deploying systems, we need to create an MDT deployment share
 | Confirmation | Click Finish. |
  
 The New Deployment Share Wizard finishes, and the new deployment share—MDT Deployment Share (`X:\DeploymentShare$`)—appears in the details pane.
-   
+
+## Relax Permissions of the Deployment Share
+
+By default, the MDT Workbench locks down the Deployment Share a bit too tight and it can cause some issues that are difficult to troubleshoot as someone new to MDT. If possible, my recommendation is to download and execute the "deploymentShareRules.ps1" script that I've included in this repository. This should be done on the server you have created your Deployment Share on (shoutout to Johan Arwidmark for coming up with the [original solution](https://www.deploymentresearch.com/fixing-mdt-2013-update-1-deployment-share-permissions-using-powershell)).
+
 # Step 2: Add Operating System Files to the Deployment Share
 
 1. Click **Start**, and then point to **All Programs**. Point to **Microsoft Deployment Toolkit**, and then click **Deployment Workbench**.
