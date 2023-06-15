@@ -233,12 +233,6 @@ The configuration above indicates that MDT should only use drivers from the fold
 ```
 
    ![drivergroup.](https://learn.microsoft.com/en-us/windows/deployment/images/fig6-taskseq.png) 
-   
-### Add the Included Scripts to the Task Sequence
-
-```
-Under construction...
-```
 
 ### Add Additional Custom Tasks to the Task Sequence
 
@@ -247,6 +241,10 @@ Under construction...
 4. Within this step of the task sequence you can add a wide variety of custom tasks to your task sequence (e.g., custom scripts, application installs, etc.)
 5. For example, if you wanted to add a custom script to the task sequence, you would simply select the **Custom Tasks** folder in the task sequence and then navigate to the  top of the window and click  **Add** > **General** > **Run PowerShell Script**
 6. Within this newly created step, add the UNC path for the script (e.g., `\\<exampleServer>\Resources\Scripts\randomPowerShellScript.ps1`)
+
+### Add the Included Scripts to the Task Sequence (Optional)
+
+For those of you who are interested in how I have personally implemented some of the scripts included in this repository, you can use the image below to serve as a guide. That said, keep in mind that this is the structure that happened to work for the environment in which the server was originally developed for, and it could very well not work for you. Feel free to experimenet! I will be including a section at some point on how to leverage Hyper-V to rapidly test changes in your task sequences (rather than using physical systems).
 
 ![customTasks](https://github.com/notaustens/MDT-Configuration-Guide/assets/105608906/513a35f0-5d3c-4801-9248-acaeadad6c49)
 
