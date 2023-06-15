@@ -23,8 +23,6 @@ The New Deployment Share Wizard finishes, and the new deployment share—MDT Dep
    
 # Step 2: Add Operating System Files to the Deployment Share
 
-MDT acts as a repository for the operating system files deployed to the reference computer and target computer. Add the operating system in the Operating Systems node in the Deployment Workbench using the Import Operating System Wizard.
-
 1. Click **Start**, and then point to **All Programs**. Point to **Microsoft Deployment Toolkit**, and then click **Deployment Workbench**.
 2. In the Deployment Workbench console tree, go to Deployment Workbench/Deployment Shares/MDT Deployment Share (`X:\DeploymentShare$`)/Operating Systems.
 3. In the Actions pane, click **Import Operating System**.
