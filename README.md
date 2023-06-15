@@ -1,5 +1,9 @@
 The following steps, and included scripts, can be implemented to develop a "standalone" deployment server (e.g., a server, not joined to an Active Directory environment, that can be used to deploy systems).
 
+```
+Note: This is very much still a WIP, and is essentially a conglomeration of my own work, the work of various blogs/tutorials, and exisitng Microsoft documentation.
+```
+
 # Step 1: Create the Deployment Share #
 
 Before we can begin deploying systems, we need to create an MDT deployment share in the Deployment Workbench. This deployment share will function as a repository for operating system images, language packs, applications, device drivers, and other software deployed to the target computers.
