@@ -1,7 +1,7 @@
 The following steps, and included scripts, can be implemented to develop a "standalone" deployment server (e.g., a server, not joined to an Active Directory environment, that can be used to deploy systems).
 
 ```
-Note: This is very much still a WIP, and is essentially a conglomeration of my own work, the work of various blogs/tutorials, and exisitng Microsoft documentation.
+Note: This is very much still a WIP. That said, it is essentially a conglomeration of my own personal documentation, various blogs/tutorials, and exisitng Microsoft documentation.
 ```
 
 # Step 1: Create the Deployment Share #
