@@ -339,7 +339,7 @@ After configuring the deployment share, update it. Updating the deployment share
    | Progress | The progress for updating the deployment share is displayed. |
    | Confirmation | Click Finish. |
 
-The Deployment Workbench starts updating the MDT Deployment Share (`X:\DeploymentShare$`)  and creates the LiteTouchPE_x64.iso and LiteTouchPE_x64.wim files (for 64-bit target computers) or LiteTouchPE_x86.iso and LiteTouchPE_x86.wim files (for 32-bit target computers). These will be located in the `E:\DeploymentShare$\Boot` folder (where *deployment_share* is the network shared folder used as the deployment share).
+The Deployment Workbench starts updating the MDT Deployment Share (`X:\DeploymentShare$`)  and creates the LiteTouchPE_x64.iso and LiteTouchPE_x64.wim files (for 64-bit target computers) or LiteTouchPE_x86.iso and LiteTouchPE_x86.wim files (for 32-bit target computers). These will be located in the `X:\DeploymentShare$\Boot` folder (where *deployment_share* is the network shared folder used as the deployment share).
 
 
 # Step 9: Import the Boot Image into WDS
