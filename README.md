@@ -244,9 +244,7 @@ Under construction...
 5. For example, if you wanted to add a custom script to the task sequence, you would simply select the **Custom Tasks** folder in the task sequence and then navigate to the  top of the window and click  **Add** > **General** > **Run PowerShell Script**
 6. Within this newly created step, add the UNC path for the script (e.g., `\\<exampleServer>\Resources\Scripts\randomPowerShellScript.ps1`)
 
-
-![[customTasks.png]]
-
+![customTasks](https://github.com/notaustens/MDT-Configuration-Guide/assets/105608906/513a35f0-5d3c-4801-9248-acaeadad6c49)
 
 # Step 6: Enable Deployment Process Monitoring
 
