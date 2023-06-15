@@ -1,4 +1,4 @@
-The following steps, and included scripts, can be implemented to develop a "standalone" deployment server (e.g., a server, not joined to an Active Directory environment, that can be used to deploy systems).
+The following guide, and included scripts, can be to leveraged to create a "hardened" standalone Windows client (or server). 
 
 ```
 Note: This is very much still a WIP. That said, it is essentially a conglomeration of my own personal documentation, various blogs/tutorials, and exisitng Microsoft documentation.
