@@ -47,7 +47,11 @@ By default, the MDT Workbench locks down the Deployment Share a bit too tight an
  | Progress            | The progress for importing the operating system is displayed.                                                                                    |
  | Confirmation        | Click Finish.                                                                                                                            	|
 
-If you have yet to create a custom image file, you can always import an operating system `.iso` that includes the full set of source files. I personally do not like this method as the stock OS images tend to be extremely bloated, but to each their own! I will be uploading an additional repository that featurs a guide on how to create custom operating system images with DISM.
+If you have yet to create a custom image file, you can always import an operating system `.iso` that includes the full set of source files. I personally do not like this method as the stock OS images tend to be extremely bloated, but to each their own! 
+
+```
+I will be uploading an additional repository that featurs a guide on how to create custom operating system images with DISM.
+```
 
 # Step 3: Create the Deployment Driver Repository 
 
