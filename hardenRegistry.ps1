@@ -1,4 +1,4 @@
-# Requires -RunAsAdministrator
+# Registry modifications present in other scripts should be consolidated to exist within this script
 
 # OneLine
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { 
