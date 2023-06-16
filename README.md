@@ -39,8 +39,8 @@ By default, the MDT Workbench locks down the Deployment Share a bit too tight an
   
  | On this wizard page | Do this                                                                                                                                          |
  | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
- | OS Type             | Click Full set of source files, and then click Next.                                                                                             |
- | Source              | In Source directory, type source_path (where source_path is the fully qualified path to the Windows 10 distribution files), and then click Next. |
+ | OS Type             | Click "Custom image file", and then click Next.                                                                                             |
+ | Source              | In Source directory, enter the absolute path of the operating system image you wish to deploy (e.g., "E:\Resources\Operating Systems\WIMs\W11-22H2-ENT.wim"), and then click Next. |
  | Destination         | Click Next.                                                                                                                                      |
  | Summary             | Click Next.                                                                                                                                      |
  | Progress            | The progress for importing the operating system is displayed.                                                                                    |
