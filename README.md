@@ -1,6 +1,6 @@
 The following guide, and included scripts, can be to used to develop a standalone deployment server that will automatically deploy, and harden, a Windows system (either a client, or another server). 
 
-**Note**: This guide does not yet explain how to install MDT and setup your environment to facilitate this process. I will add this add some point, but the official Microsoft documentation does a decent job of it and should be used until I have time to create one.
+**Note**: This guide does not yet explain how to install MDT or WDS, and setup the initial environment required to facilitate this process. I do plan on creating this at some point, but until such time - the official Microsoft documentation should be used.
 
 ```
 Note: This is very much still a WIP. That said, it is essentially a conglomeration of my own personal documentation, various blogs/tutorials, and exisitng Microsoft documentation.
