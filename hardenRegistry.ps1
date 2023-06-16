@@ -9,7 +9,8 @@ $Loc = Get-Location
     $True | % { $Arguments =  @('-NoProfile','-ExecutionPolicy Bypass','-NoExit','-File',"`"$($MyInvocation.MyCommand.Path)`"","\`"$Loc\`"");
     Start-Process -FilePath PowerShell.exe -Verb RunAs -ArgumentList $Arguments; } }
 
-$errpref = $ErrorActionPreference #Save Actual Preference
+#Save Actual Preference
+$errpref = $ErrorActionPreference
 $ErrorActionPreference = "silentlycontinue"
 
 New-Item -Path "HKLM:\SOFTWARE\Microsoft\.NETFramework\v4.0.30319"
@@ -22,9 +23,8 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\Secur
 New-Item -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\v4.0.30319"
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\v4.0.30319" -Name "SchUseStrongCrypto" -Type DWord -Value 1
 
-
+#<serverExample> should be changed to reflect the hostname of your deployment server
 Start-Process -FilePath "cmd.exe" -ArgumentList "/c reg.exe import `"\\<serverExample>\Resources\Ingress Preparation\OneDrive.reg`"" -Wait 
-
 
 #Disable OneDrive FilieSync via Group Policies
 force-mkdir "HKLM:\SOFTWARE\Wow6432Node\Policies\Microsoft\Windows\OneDrive"
@@ -35,5 +35,6 @@ rm -Recurse -Force -ErrorAction SilentlyContinue "$env:localappdata\Microsoft\On
 rm -Recurse -Force -ErrorAction SilentlyContinue "$env:programdata\Microsoft OneDrive"
 rm -Recurse -Force -ErrorAction SilentlyContinue "C:\OneDriveTemp"
 
-$ErrorActionPreference = $errpref #Restore Previous Preference
+#Restore Previous Preference
+$ErrorActionPreference = $errpref
 
