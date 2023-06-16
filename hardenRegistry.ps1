@@ -10,7 +10,7 @@ $Loc = Get-Location
     $True | % { $Arguments =  @('-NoProfile','-ExecutionPolicy Bypass','-NoExit','-File',"`"$($MyInvocation.MyCommand.Path)`"","\`"$Loc\`"");
     Start-Process -FilePath PowerShell.exe -Verb RunAs -ArgumentList $Arguments; } }
 
-# Save Actual Preference
+# Saves current error action preference
 $errpref = $ErrorActionPreference
 $ErrorActionPreference = "silentlycontinue"
 
@@ -27,7 +27,7 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\v4.0.
 # <serverExample> should be changed to reflect the hostname of your deployment server
 Start-Process -FilePath "cmd.exe" -ArgumentList "/c reg.exe import `"\\<serverExample>\Resources\Ingress Preparation\OneDrive.reg`"" -Wait 
 
-# Disable OneDrive FilieSync via Group Policies
+# Disable OneDrive FilieSync via group policies (just in case)
 force-mkdir "HKLM:\SOFTWARE\Wow6432Node\Policies\Microsoft\Windows\OneDrive"
 sp "HKLM:\SOFTWARE\Wow6432Node\Policies\Microsoft\Windows\OneDrive" "DisableFileSyncNGSC" 1
 
@@ -36,6 +36,6 @@ rm -Recurse -Force -ErrorAction SilentlyContinue "$env:localappdata\Microsoft\On
 rm -Recurse -Force -ErrorAction SilentlyContinue "$env:programdata\Microsoft OneDrive"
 rm -Recurse -Force -ErrorAction SilentlyContinue "C:\OneDriveTemp"
 
-# Restore Previous Preference
+# Reverts change made to error action preference
 $ErrorActionPreference = $errpref
 
