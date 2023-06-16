@@ -40,7 +40,7 @@ By default, the MDT Workbench locks down the Deployment Share a bit too tight an
  | On this wizard page | Do this                                                                                                                                          |
  | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
  | OS Type             | Click "Custom image file", and then click Next.                                                                                             |
- | Source              | In Source directory, enter the absolute path of the operating system image you wish to deploy (e.g., `E:\Resources\Operating Systems\WIMs\W11-22H2-ENT.wim`), and then click Next. |
+ | Source              | In Source directory, enter the absolute path of the operating system image file you are attempting to deploy (e.g., `E:\Resources\Operating Systems\WIMs\W11-22H2-ENT.wim`), and then click Next. |
  | Destination         | Click Next.                                                                                                                                      |
  | Summary             | Click Next.                                                                                                                                      |
  | Progress            | The progress for importing the operating system is displayed.                                                                                    |
