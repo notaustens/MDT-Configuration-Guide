@@ -1,4 +1,4 @@
-# General Overview and Disclaimers
+# General Overview and Disclaimer(s)
 
 The following guide, and included scripts, can be to used to develop a standalone deployment server that will automatically deploy, and harden, a Windows system (either a client, or another server). That said, this guide does not yet explain how to install MDT and setup the initial environment... I do plan on creating this at some point, but until such time - the official Microsoft documentation should be used.
 
