@@ -69,7 +69,7 @@ I will be uploading an additional repository that outlines in detail how to crea
 In order to deploy Windows 10 with MDT successfully, you need drivers for the boot images and for the operating system itself. This section will show you how to add drivers for the boot image and operating system by using a few specific system types as examples.
 
 ```
-For boot images, you need to have storage and network drivers; for the operating system, you need to have the full suite of drivers.You should only add drivers to the Windows PE images if the default drivers don't work. Adding drivers that are not necessary will only make the boot image larger and potentially delay the download time.
+For boot images, you need to have storage and network drivers; for the operating system, you need to have the full suite of drivers. You should only add drivers to the Windows PE images if the default drivers don't work. Adding drivers that are not necessary will only make the boot image larger and potentially delay the download time.
 ```
 
 ### Create the driver source structure in the file system
@@ -176,7 +176,7 @@ In the Deployment Workbench:
 
 #### For the Latitude E7450
 
-For the Dell Latitude E7450 model, you use the Dell Driver CAB file, which is accessible via the [Dell TechCenter website](https://go.microsoft.com/fwlink/p/?LinkId=619544).
+For the Dell Latitude E7450 model, you use the Dell Driver CAB file, which is accessible via the [Dell Tech Center website](https://go.microsoft.com/fwlink/p/?LinkId=619544).
 
 In these steps, we assume you've downloaded and extracted the CAB file for the Latitude E7450 model to the **D:\Drivers\Dell Inc.\Latitude E7450** folder.
 
@@ -212,18 +212,33 @@ In these steps, we assume you've downloaded and extracted the drivers for the HP
 
 4. Download (or locate) the executable for the application to the  `Applications` folder that was just created. 
 
+![folderStructure](https://github.com/notaustens/MDT-Configuration-Guide/assets/105608906/cc3bd918-dabf-46ad-93b5-a03ea1b1a29c)
+
 ## Import the application to MDT
 
 1. In the Deployment Workbench, under the active **Deployment Share** node, right-click **Applications** and select **New Application**
 
 2. Make sure that **Application with source files** is selected, and click **Next**
 
-3. 
+3. Use the table below to complete the following steps in the **New Application Wizard**:
 
-## Add the application to the task sequence
+| Wizard page     | Do this                                                                                                                                                                                  |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Details         | Enter the name of the application and the version number. Click **Next**.                                                                                                                |
+| Source          | Click **Browse** and navigate to the folder that was created in the previous section (e.g., `E:\Resources\Software\Microsoft\VSCode`). Click **Next**.                                   |
+| Command Details | Enter the CLI install command. In this case it should look something like this: `VSCodeSetup-x64-1.77.3.exe /VERYSILENT /NORESTART /MERGETASKS="!runcode, desktopicon"`. Click **Next**. |
+| Summary         | Verify everything looks correct. Click **Next**.                                                                                                                                         |
+| Confirmation                | Click **Finish**.                                                                                                     |
 
+### Verify the application was successfully imported with the correct settings
 
+1. In the Deployment Workbench, under the active **Deployment Share** node,  click on **Applications**. The pane on the right should now show a list of all available applications. 
 
+2. Right-click on the application that was just imported (e.g., `VSCode 1.77.3`) and select **Properties**.
+ 
+3. A new window will appear with three tabs. Select the **Details** tab and verify that the quiet install command is correct. This window can also be used to edit many of the application specific settings.
+
+![commandLineInstallCommand](https://github.com/notaustens/MDT-Configuration-Guide/assets/105608906/ed021972-848c-4526-a14a-702d346a713a)
 
 # Step 5: Create the Deployment Task Sequence #
 
@@ -231,20 +246,23 @@ This section will illustrates how to create a basic task sequence that will be u
 
 ### Create a task sequence for Windows 10 Enterprise ###
 
-1.  In the Deployment Workbench, under the **MDT Production** node, right-click **Task Sequences**, and create a folder named **Windows 10**.
+1.  In the Deployment Workbench, under the **MDT Production** node, right-click **Task Sequences**, and create a folder for the general category of task sequences that this will fall into.
    
 2.  Right-click the new **Windows 10** folder and select **New Task Sequence**. Use the following settings for the New Task Sequence Wizard:
 
-    -   Task sequence ID: W10-X64-001
-    -   Task sequence name: Windows 10 Enterprise x64
-    -   Task sequence comments: Production Image
-    -   Template: Standard Client Task Sequence
-    -   Select OS: Windows 10 Enterprise x64 
-    -   Specify Product Key: Don't specify a product key at this time
-    -   Full Name: Administrator
-    -   Organization: exampleOrg
-    -   Internet Explorer home page: 
-    -   Admin Password: Don't specify an Administrator Password at this time
+| Wizard page                 | Do this                                                        |
+| --------------------------- | -------------------------------------------------------------- |
+| Task sequence ID            | W10-X64-001                                                    |
+| Task sequence name          | Windows 10 Enterprise x64                                      |
+| Task sequence comments      | This is up to you.                                             |
+| Template                    | Standard Client Task Sequence                                  |
+| Select OS                   | Windows 10 Enterprise x64                                      |
+| Specify Product Key         | Don't specify a product key at this time (unless you have one) |
+| Full Name                   | Administrator                                                  |
+| Organization                | exampleOrganization                                            |
+| Internet Explorer home page | N/A                                                            |
+| Admin Password              | Don't specify an Administrator Password at this time           |
+
 
 ### Edit the Windows 10 task sequence
 
@@ -285,9 +303,14 @@ The configuration above indicates that MDT should only use drivers from the fold
 
 ### Add the Included Scripts to the Task Sequence (Optional)
 
-For those of you who are interested in how I have personally implemented some of the scripts included in this repository, you can use the image below to serve as a guide. That said, keep in mind that this is the structure that happened to work for the environment in which the server was originally developed for, and it could very well not work for you. Feel free to experimenet! I will be including a section at some point on how to leverage Hyper-V to rapidly test changes in your task sequences (rather than using physical systems).
+For those of you who are interested in how I have personally implemented some of the scripts included in this repository, you can use the image below to serve as a guide. That said, keep in mind that this is the structure that happened to work for the environment in which the server was originally developed for, and it could very well not work for you. Feel free to experiment! I will be including a section at some point on how to leverage Hyper-V to rapidly test changes in your task sequences (rather than using physical systems).
 
 ![customTasks](https://github.com/notaustens/MDT-Configuration-Guide/assets/105608906/513a35f0-5d3c-4801-9248-acaeadad6c49)
+
+### Add an Application to the Task Sequence
+
+![addApplicationToTaskSequence](https://github.com/notaustens/MDT-Configuration-Guide/assets/105608906/8a1fd6e2-42e0-40ab-90be-1765c7f055f7)
+
 
 # Step 6: Enable Deployment Process Monitoring
 
@@ -384,6 +407,7 @@ UserPassword=<examplePassword>
 
 SkipBDDWelcome=YES
 ```
+
 # Step 8: Update the Deployment Share
 
 After configuring the deployment share, update it. Updating the deployment share updates all the MDT configuration files and generates a customized version of Windows PE that is used to start the target system and initiate OTI deployment.
@@ -408,7 +432,6 @@ After configuring the deployment share, update it. Updating the deployment share
    | Confirmation | Click Finish. |
 
 The Deployment Workbench starts updating the MDT Deployment Share (`X:\DeploymentShare$`)  and creates the LiteTouchPE_x64.iso and LiteTouchPE_x64.wim files (for 64-bit target computers) or LiteTouchPE_x86.iso and LiteTouchPE_x86.wim files (for 32-bit target computers). These will be located in the `X:\DeploymentShare$\Boot` folder (where *deployment_share* is the network shared folder used as the deployment share).
-
 
 # Step 9: Import the Boot Image into WDS
 
