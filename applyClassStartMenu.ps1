@@ -1,1 +1,0 @@
-﻿Import-StartLayout -LayoutPath C:\Windows\Temp\cLayoutModification.xml -MountPath $env:SystemDrive\
