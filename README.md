@@ -5,6 +5,7 @@ The following guide, and included scripts, can be to used to develop a standalon
 ```
 Note: This is very much still a WIP. That said, it is essentially a conglomeration of my own personal documentation, various blogs/tutorials, and exisitng Microsoft documentation.
 ```
+
 ---
 
 # Step 1: Create the Deployment Share #
@@ -14,8 +15,11 @@ Before we can begin deploying systems, we need to create an MDT deployment share
 **To create a deployment share in the Deployment Workbench**
 
 1. Click **Start**, and then point to **All Programs**. Point to **Microsoft Deployment Toolkit**, and then click **Deployment Workbench**.
+
 2. In the Deployment Workbench console tree, go to Deployment Workbench/Deployment Shares.
+
 3. In the Actions pane, click **New Deployment Shares**.
+
 4. Complete the **New Deployment Share Wizard** using the following information.
 
 |On this wizard page | Do this |
@@ -37,8 +41,11 @@ By default, the MDT Workbench locks down the Deployment Share a bit too tight an
 # Step 2: Add Operating System Files to the Deployment Share
 
 1. Click **Start**, and then point to **All Programs**. Point to **Microsoft Deployment Toolkit**, and then click **Deployment Workbench**.
+
 2. In the Deployment Workbench console tree, go to Deployment Workbench/Deployment Shares/MDT Deployment Share (`X:\DeploymentShare$`)/Operating Systems.
+
 3. In the Actions pane, click **Import Operating System**.
+
 4. Complete the Import Operating System Wizard using the following information.
   
  | On this wizard page | Do this                                                                                                                                          |
@@ -73,7 +80,8 @@ The key to successful management of drivers for MDT is to have a well structured
 In the steps below, it's critical that the folder names used for various computer makes and models exactly match the results of **wmic computersystem get model,manufacturer** on the target system.
 ```
 
-1.  On the deployment server, create a new folder in a location accessible by MDT. The path to which should look something like this:  `X:\Resources\driverRepository`   
+1.  On the deployment server, create a new folder in a location accessible by MDT. The path to which should look something like this:  `X:\Resources\driverRepository`  
+ 
 2.  Within this newly created  `driverRepository` folder, create the following folder structure:
 
 	- **WinPE x86**: `"X:\Resources\driverRepository\WinPE x86"`
@@ -88,9 +96,10 @@ Even if you're not going to use both x86 and x64 boot images, we still recommend
 
 ### Create the logical driver structure in MDT
 
-When you import drivers to the MDT driver repository, MDT creates a single instance folder structure based on driver class names. However, you can, and should, mimic the driver structure of your driver source repository in the Deployment Workbench. This mimic is done by creating logical folders in the Deployment Workbench.
+When you import drivers to the MDT driver repository, MDT creates a single instance folder structure based on driver class names. However, you can, and should, replicate the driver structure of your driver source repository in the Deployment Workbench. This can be accomplished by creating logical folders in the Deployment Workbench.
 
 1.  On MDT01, using Deployment Workbench, select the **Out-of-Box Drivers** node.
+
 2.  In the **Out-Of-Box Drivers** node, create the following folder structure:
 
 	- `WinPE x86`
@@ -191,20 +200,41 @@ In these steps, we assume you've downloaded and extracted the drivers for the HP
    
 # Step 4: Add Applications to the Deployment Share
 
-```
-Under construction...
-```
+## Prepare the environment and download (or locate) the application
+
+**Note**: [VSCode version 1.77.3](https://code.visualstudio.com/updates/v1_77) will be used to illustrate this process
+
+1. On the deployment server, create a new folder to act as a repository for the applications to be deployed with the target systems. This will look something like this: `X:\Resources\Software`  
+ 
+2. Within the newly created `Software` folder, create a folder for the vendor (e.g., `X:\Resources\Software\Vendor\`)
+
+3. Within the `Vendor` folder, create a folder for the application itself (e.g., `X:\Resources\Software\Vendor\Application`)
+
+4. Download (or locate) the executable for the application to the  `Applications` folder that was just created. 
+
+## Import the application to MDT
+
+1. In the Deployment Workbench, under the active **Deployment Share** node, right-click **Applications** and select **New Application**
+
+2. Make sure that **Application with source files** is selected, and click **Next**
+
+3. 
+
+## Add the application to the task sequence
+
+
+
 
 # Step 5: Create the Deployment Task Sequence #
 
-This section will show you how to create the task sequence used to deploy your production Windows 10  image. 
+This section will illustrates how to create a basic task sequence that will be used to deploy an image to the target system. 
 
 ### Create a task sequence for Windows 10 Enterprise ###
 
 1.  In the Deployment Workbench, under the **MDT Production** node, right-click **Task Sequences**, and create a folder named **Windows 10**.
    
 2.  Right-click the new **Windows 10** folder and select **New Task Sequence**. Use the following settings for the New Task Sequence Wizard:
-   
+
     -   Task sequence ID: W10-X64-001
     -   Task sequence name: Windows 10 Enterprise x64
     -   Task sequence comments: Production Image
@@ -244,10 +274,14 @@ The configuration above indicates that MDT should only use drivers from the fold
 ### Add Additional Custom Tasks to the Task Sequence
 
 1. Continuing from the previous procedure, right-click the **Windows 10 Enterprise x64**  task sequence, and select **Properties**.
+
 2. Select the **Task Sequence** tab and expand the **State Restore** section.
-4. Within this step of the task sequence you can add a wide variety of custom tasks to your task sequence (e.g., custom scripts, application installs, etc.)
-5. For example, if you wanted to add a custom script to the task sequence, you would simply select the **Custom Tasks** folder in the task sequence and then navigate to the  top of the window and click  **Add** > **General** > **Run PowerShell Script**
-6. Within this newly created step, add the UNC path for the script (e.g., `\\<exampleServer>\Resources\Scripts\randomPowerShellScript.ps1`)
+
+3. Within this step of the task sequence you can add a wide variety of custom tasks to your task sequence (e.g., custom scripts, application installs, etc.)
+
+4. For example, if you wanted to add a custom script to the task sequence, you would simply select the **Custom Tasks** folder in the task sequence and then navigate to the  top of the window and click  **Add** > **General** > **Run PowerShell Script**
+
+5. Within this newly created step, add the UNC path for the script (e.g., `\\<exampleServer>\Resources\Scripts\randomPowerShellScript.ps1`)
 
 ### Add the Included Scripts to the Task Sequence (Optional)
 
@@ -262,19 +296,29 @@ You should enable deployment monitoring by opening up the Monitoring node in the
 **To enable monitoring of the deployment process**
 
 1. Click **Start**, and then point to **All Programs**. Point to **Microsoft Deployment Toolkit**, and then click **Deployment Workbench**.
+
 2. In the Deployment Workbench console tree, go to Deployment Workbench/Deployment Shares.
+
 3. In the details pane, click **MDT Deployment Share (**`X:\DeploymentShare$`**)**.
+
 4. In the Actions pane, click **Properties**
+
 5. In the **MDT Deployment Share**  (`X:\DeploymentShare$`) **Properties** dialog box, on the **Monitoring** tab, select the **Enable monitoring for this deployment share** check box, and then click **Apply**.
+
 6. In the **MDT Deployment Share** (`X:\DeploymentShare$`) **Properties** dialog box, on the **Rules** tab, notice that the **EventService** property has been added to the CustomSettings.ini file, and then click **OK**.
+
 7. Close all open windows and dialog boxes.
 
 # Step 7: Add Rules to Deployment Share
 
 1. Click **Start**, and then point to **All Programs**. Point to **Microsoft Deployment Toolkit**, and then click **Deployment Workbench**.
+
 2. In the Deployment Workbench console tree, go to Deployment Workbench/Deployment Shares.
+
 3. In the details pane, click **MDT Deployment Share (**`X:\DeploymentShare$`**)**.
+
 4. In the Actions pane, click **Properties** and select the **Rules** tab
+
 5. The following code block is what I am currently using to guide the deployment process
 
 ```
@@ -342,14 +386,18 @@ SkipBDDWelcome=YES
 ```
 # Step 8: Update the Deployment Share
 
-After configuring the deployment share, update it. Updating the deployment share updates all the MDT configuration files and generates a customized version of Windows PE. You use the customized version of Windows PE to start the target computer and initiate OTI deployment.
+After configuring the deployment share, update it. Updating the deployment share updates all the MDT configuration files and generates a customized version of Windows PE that is used to start the target system and initiate OTI deployment.
 
 **To update the deployment share in the Deployment Workbench**
 
 1. Click **Start**, and then point to **All Programs**. Point to **Microsoft Deployment Toolkit**, and then click **Deployment Workbench**.
+
 2. In the Deployment Workbench console tree, go to Deployment Workbench/Deployment Shares.
+
 3. In the details pane, click **MDT Deployment Share (**`X:\DeploymentShare$`**)**.
+
 4. In the Actions pane, click **Update Deployment Share**.
+
 5. Complete the Update Deployment Share Wizard using the following information. Accept the default values unless otherwise specified.
    
 | On this Wizard page | Do this |
@@ -365,10 +413,15 @@ The Deployment Workbench starts updating the MDT Deployment Share (`X:\Deploymen
 # Step 9: Import the Boot Image into WDS
 
 1. Click **Start**, and then point to **All Programs**. Click the **Windows Administrative Tools** folder and select the **Windows Deployment Services** application.
+
 2. In the Windows Deployment Server console tree, expand the Servers/exampleServer node
+
 3. Right-click the **Boot Images** folder and select "Add Boot Image"
+
 4. This will open the **Add Image Wizard** where you will simply browse to the `X:\DeploymentShare$\Boot`, select the **LiteTouchPE_x64.wim** boot image that you generated in the previous step, and click **Next**
+
 5. Click **Next**
+
 7. Click **Next** one more time and then click **Finish** once the image has been successfully uploaded.
 
 # Step 10: Deploy Windows 10 to the Target Computer
@@ -382,15 +435,23 @@ The process has been almost entirely automated, however you will need to select 
 ### To monitor the target deployment process, complete the following steps:
 
 1. On your deployment server, click **Start**, and then point to **All Programs**. Point to **Microsoft Deployment Toolkit**, and then click **Deployment Workbench**.
+
 2. In the Deployment Workbench console tree, go to Deployment Workbench/Deployment Shares/MDT Deployment Share `(X:\DeploymentShare$`)/Monitoring
+
 3. In the Actions pane, periodically click **Refresh**.
+
 4. In the details pane, view the deployment process for the target5 system
+
 5. In the Actions pane, periodically click **Refresh**.
+
 6. The status of the deployment process is updated in the details pane. Continue to monitor the deployment process until the process is complete.
+
 7. Close the Deployment Workbench.
 
 ### To complete the target computer deployment process, perform the following steps:
 
 1. On your deployment server, in the **Deployment Summary** dialog box, click **Details**. If any errors or warnings occur, review the errors or warnings, and record any diagnostic information.
+
 2. In the **Deployment Summary** dialog box, click **Finish**.
+
 3. At the end of the MDT deployment process, the **Deployment Summary** dialog box appears. The image of Windows 10 captured from the reference computer is now installed on the target computer. If any errors or warnings occur, consult the MDT document *Troubleshooting Reference*.
