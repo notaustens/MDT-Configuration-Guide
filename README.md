@@ -143,10 +143,8 @@ The drivers that are used for the boot images (Windows PE) are Windows 10 driver
     -   **Selection Profile name**: WinPE x64
     -   **Folders**: Select the WinPE x64 folder in Out-of-Box Drivers.
     -   Select **Next**, **Next** and **Finish**.
-  
-   ![figure 5.](https://learn.microsoft.com/en-us/windows/deployment/images/fig5-selectprofile.png) 
    
- `Creating the WinPE x64 selection profile.`
+   ![figure 5.](https://learn.microsoft.com/en-us/windows/deployment/images/fig5-selectprofile.png) 
 
 ### Extract and import drivers for the x64 boot image
 
@@ -177,20 +175,18 @@ In these steps, we assume you've downloaded and extracted the CAB file for the L
 1.  In the **Deployment Workbench**, in the **MDT Production** > **Out-Of-Box Drivers** > **Windows 10 x64** node, expand the **Dell Inc.** node.
    
 2.  Right-click the **Latitude E7450** folder and select **Import Drivers** and use the following Driver source directory to import drivers:
-
-    - `D:\Drivers\Windows 10 x64\Dell Inc.\Latitude E7450`
+	- `D:\Drivers\Windows 10 x64\Dell Inc.\Latitude E7450`
 
 #### For the HP EliteBook 8560w
 
 For the HP EliteBook 8560w, you use HP Image Assistant to get the drivers. The HP Image Assistant can be accessed on the [HP Support site](https://ftp.ext.hp.com/pub/caps-softpaq/cmit/HPIA.html).
 
-In these steps, we assume you've downloaded and extracted the drivers for the HP EliteBook 8650w model to the `D:\Drivers\Windows 10 x64\Hewlett-Packard\HP EliteBook 8560w` folder.
+In these steps, we assume you've downloaded and extracted the drivers for the HP EliteBook 8650w model to the **D:\Drivers\Windows 10 x64\Hewlett-Packard\HP EliteBook 8560w** folder.
 
 1.  In the **Deployment Workbench**, in the **MDT Production** > **Out-Of-Box Drivers** > **Windows 10 x64** node, expand the **Hewlett-Packard** node.
    
 2.  Right-click the **HP EliteBook 8560w** folder and select **Import Drivers** and use the following Driver source directory to import drivers:
-   
-    - `D:\Drivers\Windows 10 x64\Hewlett-Packard\HP EliteBook 8560w`
+	- `D:\Drivers\Windows 10 x64\Hewlett-Packard\HP EliteBook 8560w`
    
 # Step 4: Add Applications to the Deployment Share
 
