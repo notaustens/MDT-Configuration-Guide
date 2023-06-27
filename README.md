@@ -8,9 +8,9 @@ Note: This is very much still a WIP. That said, it is essentially a conglomerati
 
 ---
 
-# Step 1: Create the Deployment Share #
+# Step 1: Create a Deployment Share #
 
-Before we can begin deploying systems, we need to create an MDT deployment share in the Deployment Workbench. This deployment share will function as a repository for operating system images, language packs, applications, device drivers, and other software deployed to the target computers.
+Before system deployments can begin, a MDT deployment share must be created in the Deployment Workbench. This deployment share will function as a repository for operating system images, language packs, applications, device drivers, and other software  that can be deployed to a client or server.
 
 **To create a deployment share in the Deployment Workbench**
 
@@ -58,11 +58,7 @@ By default, the MDT Workbench locks down the Deployment Share a bit too tight an
  | Progress            | The progress for importing the operating system is displayed.                                                                                    |
  | Confirmation        | Click Finish.                                                                                                                            	|
 
-If you have yet to create a custom image file, you can always import an operating system `.iso` that includes the full set of source files. I personally do not like this method as the stock OS images tend to be extremely bloated, but to each their own! 
-
-```
-I will be uploading an additional repository that outlines in detail how to create custom operating system images by leveraging DISM.
-```
+If you have yet to create a custom image file, put on your wizard hat and head over to the [wimWizard](https://github.com/notaustens/wimWizard) guide to learn more. That said, you can always import an operating system `.iso` that includes the full set of source files. I personally do not like this method as the stock OS images tend to be extremely bloated, but to each their own! 
 
 # Step 3: Create the Deployment Driver Repository 
 
@@ -90,8 +86,8 @@ In the steps below, it's critical that the folder names used for various compute
 
 3.  In the new **Windows 10 x64** folder, create the following folder structure: `\Windows 10 x64\%MAKE%\%MODEL%`
 
-```ad-note
-Even if you're not going to use both x86 and x64 boot images, we still recommend that you add the support structure for future use.
+```
+Even if you're not going to use both x86 and x64 boot images, it is still recommeneded that you add the support structure for future use.
 ```
 
 ### Create the logical driver structure in MDT
@@ -126,8 +122,6 @@ If you want a more standardized naming convention, try the **ModelAliasExit.vbs
 
 ![drivers.](https://learn.microsoft.com/en-us/windows/deployment/images/fig4-oob-drivers.png) 
 
-`The Out-of-Box Drivers structure in the Deployment Workbench.`
-
 ### Create the selection profiles for boot image drivers
 
 By default, MDT adds any storage and network drivers that you import to the boot images. However, you should add only the drivers that are necessary to the boot image. You can control which drivers are added by using selection profiles.
@@ -149,7 +143,7 @@ The drivers that are used for the boot images (Windows PE) are Windows 10 driver
     -   **Selection Profile name**: WinPE x64
     -   **Folders**: Select the WinPE x64 folder in Out-of-Box Drivers.
     -   Select **Next**, **Next** and **Finish**.
-   
+  
    ![figure 5.](https://learn.microsoft.com/en-us/windows/deployment/images/fig5-selectprofile.png) 
    
  `Creating the WinPE x64 selection profile.`
@@ -183,20 +177,20 @@ In these steps, we assume you've downloaded and extracted the CAB file for the L
 1.  In the **Deployment Workbench**, in the **MDT Production** > **Out-Of-Box Drivers** > **Windows 10 x64** node, expand the **Dell Inc.** node.
    
 2.  Right-click the **Latitude E7450** folder and select **Import Drivers** and use the following Driver source directory to import drivers:
-   
- `D:\Drivers\Windows 10 x64\Dell Inc.\Latitude E7450`
+
+    - `D:\Drivers\Windows 10 x64\Dell Inc.\Latitude E7450`
 
 #### For the HP EliteBook 8560w
 
 For the HP EliteBook 8560w, you use HP Image Assistant to get the drivers. The HP Image Assistant can be accessed on the [HP Support site](https://ftp.ext.hp.com/pub/caps-softpaq/cmit/HPIA.html).
 
-In these steps, we assume you've downloaded and extracted the drivers for the HP EliteBook 8650w model to the **D:\Drivers\Windows 10 x64\Hewlett-Packard\HP EliteBook 8560w** folder.
+In these steps, we assume you've downloaded and extracted the drivers for the HP EliteBook 8650w model to the `D:\Drivers\Windows 10 x64\Hewlett-Packard\HP EliteBook 8560w` folder.
 
 1.  In the **Deployment Workbench**, in the **MDT Production** > **Out-Of-Box Drivers** > **Windows 10 x64** node, expand the **Hewlett-Packard** node.
    
 2.  Right-click the **HP EliteBook 8560w** folder and select **Import Drivers** and use the following Driver source directory to import drivers:
    
- `D:\Drivers\Windows 10 x64\Hewlett-Packard\HP EliteBook 8560w`
+    - `D:\Drivers\Windows 10 x64\Hewlett-Packard\HP EliteBook 8560w`
    
 # Step 4: Add Applications to the Deployment Share
 
@@ -228,7 +222,7 @@ In these steps, we assume you've downloaded and extracted the drivers for the HP
 | Source          | Click **Browse** and navigate to the folder that was created in the previous section (e.g., `E:\Resources\Software\Microsoft\VSCode`). Click **Next**.                                   |
 | Command Details | Enter the CLI install command. In this case it should look something like this: `VSCodeSetup-x64-1.77.3.exe /VERYSILENT /NORESTART /MERGETASKS="!runcode, desktopicon"`. Click **Next**. |
 | Summary         | Verify everything looks correct. Click **Next**.                                                                                                                                         |
-| Confirmation                | Click **Finish**.                                                                                                     |
+| Confirmation                | Click **Finish**.                                                                                                                                                                                         |
 
 ### Verify the application was successfully imported with the correct settings
 
@@ -289,7 +283,7 @@ The configuration above indicates that MDT should only use drivers from the fold
 
    ![drivergroup.](https://learn.microsoft.com/en-us/windows/deployment/images/fig6-taskseq.png) 
 
-### Add Additional Custom Tasks to the Task Sequence
+### Add a Custom Task to the Task Sequence
 
 1. Continuing from the previous procedure, right-click the **Windows 10 Enterprise x64**  task sequence, and select **Properties**.
 
@@ -299,7 +293,7 @@ The configuration above indicates that MDT should only use drivers from the fold
 
 4. For example, if you wanted to add a custom script to the task sequence, you would simply select the **Custom Tasks** folder in the task sequence and then navigate to the  top of the window and click  **Add** > **General** > **Run PowerShell Script**
 
-5. Within this newly created step, add the path to the script (e.g., `\\<exampleServer>\Resources\Scripts\randomPowerShellScript.ps1`)
+5. Within the newly created **Run PowerShell Script** step of the task sequence, add the path to the script: (e.g., `\\<exampleServer>\Resources\Scripts\randomPowerShellScript.ps1`)
 
 ### Add the Included Scripts to the Task Sequence (Optional)
 
@@ -309,10 +303,17 @@ For those of you who are interested in how I have personally implemented some of
 
 ### Add an Application to the Task Sequence
 
-1. 
+1. Similar to the previous procedure, right-click the **Windows 10 Enterprise x64**  task sequence, and select **Properties**.
+
+2. Select the **Task Sequence** tab and expand the **State Restore** section.
+
+3. Select the **Custom Tasks** folder in the task sequence and then navigate to the top of the window and click **Add** > **General** > **Install Application**
+
+4. Select the newly created **Install Application** step in the task sequence, select the **Install a single application** radio button, click on **Browse** and select an available application.
+
+5. Click on **Ok** and then update the deployment share (refer to [Step 8](#step-8-update-the-deployment-share))  
 
 ![addApplicationToTaskSequence](https://github.com/notaustens/MDT-Configuration-Guide/assets/105608906/8a1fd6e2-42e0-40ab-90be-1765c7f055f7)
-
 
 # Step 6: Enable Deployment Process Monitoring
 
@@ -344,7 +345,7 @@ You should enable deployment monitoring by opening up the Monitoring node in the
 
 4. In the Actions pane, click **Properties** and select the **Rules** tab
 
-5. The following code block is what I am currently using to guide the deployment process
+5. The following code block is an example of what I am currently using to guide the deployment process:
 
 ```
 [Settings]
