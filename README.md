@@ -299,7 +299,7 @@ The configuration above indicates that MDT should only use drivers from the fold
 
 4. For example, if you wanted to add a custom script to the task sequence, you would simply select the **Custom Tasks** folder in the task sequence and then navigate to the  top of the window and click  **Add** > **General** > **Run PowerShell Script**
 
-5. Within this newly created step, add the UNC path for the script (e.g., `\\<exampleServer>\Resources\Scripts\randomPowerShellScript.ps1`)
+5. Within this newly created step, add the path to the script (e.g., `\\<exampleServer>\Resources\Scripts\randomPowerShellScript.ps1`)
 
 ### Add the Included Scripts to the Task Sequence (Optional)
 
@@ -308,6 +308,8 @@ For those of you who are interested in how I have personally implemented some of
 ![customTasks](https://github.com/notaustens/MDT-Configuration-Guide/assets/105608906/513a35f0-5d3c-4801-9248-acaeadad6c49)
 
 ### Add an Application to the Task Sequence
+
+1. 
 
 ![addApplicationToTaskSequence](https://github.com/notaustens/MDT-Configuration-Guide/assets/105608906/8a1fd6e2-42e0-40ab-90be-1765c7f055f7)
 
